@@ -172,35 +172,75 @@ var PersiantoEnglish = {
     "ً" : "Q",
     "ٌ" : "W",
     "ٍُ" : "E",
-    "ً" : "R",
+    //"ً" : "R",
     "ُ" : "T",
-    "ِ" : "Y",
-    "َ" : "U",
-    "ّ" : "I",
+    "،" : "Y",
+    "؛" : "U",
+    "," : "I",
     "]" : "O",
     "[" : "P",
     "}" : "{",
     "{" : "}",
-    "ؤ" : "A",
-    "ئ" : "S",
-    "ي" : "D",
-    "إ" : "F",
-    "أ" : "G",
+    "َ" : "A",
+    "ُ" : "S",
+    "ِ" : "D",
+    "ّ" : "F",
+    "ۀ" : "G",
     "آ" : "H",
-    "ة" : "J",
-    "»" : "K",
-    "«" : "L",
+    "-" : "J",
+    "«" : "K",
+    "»" : "L",
     ":" : ":",
-    "؛" : "\"",
+    // "؛" : "\"",
     "|" : "|",
-    "|" : "Z",
-    "«" : "X",
+    "ة" : "Z",
+    "ي" : "X",
     "ژ" : "C",
-    "ٰ" : "V",
-    "‌" : "B",
-    "ٔ" : "N",
+    "ؤ" : "V",
+    "إ" : "B",
+    "أ" : "N",
     "ء" : "M",
-    ">" : "<",
-    "<" : ">",
+    "<" : "<",
+    ">" : ">",
     "؟" : "?",
 }
+
+var changeLang = () => {
+    let element = document.activeElement;
+    if(!(element instanceof HTMLTextAreaElement)){
+        alert("باید در یک Text Field متن خود را انتخاب کنید!");
+        return;
+    }
+    let {selectionStart, selectionEnd} = element;
+    if (selectionEnd === selectionEnd){
+        return;
+    }
+    let ElementText = element.value;
+    let BeforeSelectedText = ElementText.substring(0, selectionStart);
+    let AfterSelectedText = ElementText.substring(selectionEnd);
+    let SelectedText = ElementText.substring(selectionStart, selectionEnd);
+
+    element.value = BeforeSelectedText;
+
+    let KeyboardType = document.getElementById("KType");
+
+    switch(KeyboardType.value){
+        case MRT:
+            //changing text based on MRT Keyboard layout
+            break;
+        case Standard:
+            //changing text based on Standard Persian Keyboard layout
+            break;
+        case Persian:
+            //changing text based on Persian Keyboard layout
+            break;
+    }
+    
+}
+
+chrome.contextMenus.removeAll();
+chrome.contextMenus.create({
+    title: "Change language",
+    contexts: ["selection"],
+    onclick: changeLang
+});
