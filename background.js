@@ -1,246 +1,28 @@
-var MRTtoEnglish = {
-    "ض" : "q",
-    "ص" : "w",
-    "ث" : "e",
-    "ق" : "r",
-    "ف" : "t",
-    "غ" : "y",
-    "ع" : "u",
-    "ه" : "i",
-    "خ" : "o",
-    "ح" : "p",
-    "ج" : "[",
-    "چ" : "]",
-    "ش" : "a",
-    "س" : "s",
-    "ی" : "d",
-    "ب" : "f",
-    "ل" : "g",
-    "ا" : "h",
-    "ت" : "j",
-    "ن" : "k",
-    "م" : "l",
-    "ک" : ";",
-    "گ" : "'",
-    "پ" : "\\",
-    "ظ" : "z",
-    "ط" : "x",
-    "ز" : "c",
-    "ر" : "v",
-    "ذ" : "b",
-    "د" : "n",
-    "ئ" : "m",
-    "و" : ",",
-    "َ" : "Q",
-    "ً" : "W",
-    "ُ" : "E",
-    "ٌ" : "R",
-    "ْ" : "T",
-    "ٰ" : "Y",
-    "ٔ" : "U",
-    "ۀ" : "I",
-    "]" : "O",
-    "[" : "P",
-    "}" : "{",
-    "{" : "}",
-    "ِ" : "A",
-    "ٍ" : "S",
-    "ي" : "D",
-    "ۤ" : "F",
-    "ٖ" : "G",
-    "آ" : "H",
-    "ة" : "J",
-    "" : "K",
-    "«" : "L",
-    ":" : ":",
-    "؛" : "\"",
-    "ژ" : "|",
-    "»" : "Z",
-    "«" : "X",
-    "›" : "C",
-    "‹" : "V",
-    "إ" : "B",
-    "أ" : "N",
-    "ء" : "M",
-    "ؤ" : "<",
-    "،" : ">",
-    "؟" : "?",
+var ktype = "MRT";
+
+var changePersianToEnglish = () => {
+    // alert(document.getElementById("KType"));
+    console.log("fa");
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {ktype}, (res) => {
+            console.log(tabs[0].id);
+            if(chrome.runtime.lastError) {
+                setTimeout(changePersianToEnglish, 1000);
+            } else {
+                console.log("HKAKF");
+            }
+        });
+    })
 }
 
-var StandardtoEnglish = {
-    "ض" : "q",
-    "ص" : "w",
-    "ث" : "e",
-    "ق" : "r",
-    "ف" : "t",
-    "غ" : "y",
-    "ع" : "u",
-    "ه" : "i",
-    "خ" : "o",
-    "ح" : "p",
-    "ج" : "[",
-    "چ" : "]",
-    "ش" : "a",
-    "س" : "s",
-    "ی" : "d",
-    "ب" : "f",
-    "ل" : "g",
-    "ا" : "h",
-    "ت" : "j",
-    "ن" : "k",
-    "م" : "l",
-    "ک" : ";",
-    "گ" : "'",
-    "\\" : "\\",
-    "ظ" : "z",
-    "ط" : "x",
-    "ز" : "c",
-    "ر" : "v",
-    "ذ" : "b",
-    "د" : "n",
-    "پ" : "m",
-    "و" : ",",
-    "ْْ" : "Q",
-    "ٌ" : "W",
-    "ٍُ" : "E",
-    "ً" : "R",
-    "ُ" : "T",
-    "ِ" : "Y",
-    "َ" : "U",
-    "ّ" : "I",
-    "]" : "O",
-    "[" : "P",
-    "}" : "{",
-    "{" : "}",
-    "ؤ" : "A",
-    "ئ" : "S",
-    "ي" : "D",
-    "إ" : "F",
-    "أ" : "G",
-    "آ" : "H",
-    "ة" : "J",
-    "»" : "K",
-    "«" : "L",
-    ":" : ":",
-    "؛" : "\"",
-    "|" : "|",
-    "ك" : "Z",
-    "ط" : "X",
-    "ژ" : "C",
-    "ٰ" : "V",
-    "‌" : "B",
-    "ٔ" : "N",
-    "ء" : "M",
-    ">" : "<",
-    "<" : ">",
-    "؟" : "?",
-}
-
-var PersiantoEnglish = {
-    "ض" : "q",
-    "ص" : "w",
-    "ث" : "e",
-    "ق" : "r",
-    "ف" : "t",
-    "غ" : "y",
-    "ع" : "u",
-    "ه" : "i",
-    "خ" : "o",
-    "ح" : "p",
-    "ج" : "[",
-    "چ" : "]",
-    "ش" : "a",
-    "س" : "s",
-    "ی" : "d",
-    "ب" : "f",
-    "ل" : "g",
-    "ا" : "h",
-    "ت" : "j",
-    "ن" : "k",
-    "م" : "l",
-    "ک" : ";",
-    "گ" : "'",
-    "پ" : "\\",
-    "ظ" : "z",
-    "ط" : "x",
-    "ز" : "c",
-    "ر" : "v",
-    "ذ" : "b",
-    "د" : "n",
-    "پ" : "m",
-    "و" : ",",
-    "ً" : "Q",
-    "ٌ" : "W",
-    "ٍُ" : "E",
-    //"ً" : "R",
-    "ُ" : "T",
-    "،" : "Y",
-    "؛" : "U",
-    "," : "I",
-    "]" : "O",
-    "[" : "P",
-    "}" : "{",
-    "{" : "}",
-    "َ" : "A",
-    "ُ" : "S",
-    "ِ" : "D",
-    "ّ" : "F",
-    "ۀ" : "G",
-    "آ" : "H",
-    "-" : "J",
-    "«" : "K",
-    "»" : "L",
-    ":" : ":",
-    // "؛" : "\"",
-    "|" : "|",
-    "ة" : "Z",
-    "ي" : "X",
-    "ژ" : "C",
-    "ؤ" : "V",
-    "إ" : "B",
-    "أ" : "N",
-    "ء" : "M",
-    "<" : "<",
-    ">" : ">",
-    "؟" : "?",
-}
-
-var changeLang = () => {
-    let element = document.activeElement;
-    if(!(element instanceof HTMLTextAreaElement)){
-        alert("باید در یک Text Field متن خود را انتخاب کنید!");
-        return;
-    }
-    let {selectionStart, selectionEnd} = element;
-    if (selectionEnd === selectionEnd){
-        return;
-    }
-    let ElementText = element.value;
-    let BeforeSelectedText = ElementText.substring(0, selectionStart);
-    let AfterSelectedText = ElementText.substring(selectionEnd);
-    let SelectedText = ElementText.substring(selectionStart, selectionEnd);
-
-    element.value = BeforeSelectedText;
-
-    let KeyboardType = document.getElementById("KType");
-
-    switch(KeyboardType.value){
-        case MRT:
-            //changing text based on MRT Keyboard layout
-            break;
-        case Standard:
-            //changing text based on Standard Persian Keyboard layout
-            break;
-        case Persian:
-            //changing text based on Persian Keyboard layout
-            break;
-    }
-    
+changeKeyboardType = (type) => {
+    console.log(type);
+    ktype = type;
 }
 
 chrome.contextMenus.removeAll();
 chrome.contextMenus.create({
     title: "Change language",
     contexts: ["selection"],
-    onclick: changeLang
+    onclick: changePersianToEnglish
 });
